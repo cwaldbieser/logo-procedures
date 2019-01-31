@@ -1,0 +1,16 @@
+
+
+to deathly.hallows :side
+localmake "r :side / (2 * (sqrt 3))
+compose.shapes  [xlated circle] (list (list "equalateral (list :side) (list (-0.5*:side) (-1*:r)) 30) (list :r))
+end 
+
+to flipped.hallows :side
+localmake "r :side / (2 * (sqrt 3))
+compose.shapes [right setpencolor xlated setpencolor circle right] (list [180] [2] (list "equalateral (list :side) (list (-0.5*:side) (-1*:r)) 30) [3] (list :r) [180])
+end
+
+to multicolor.hallows
+compose.shapes [setpencolor xlated setpencolor circle] [[2] [equalateral [110] [-55 -30] 30] [3] [30]]
+end
+

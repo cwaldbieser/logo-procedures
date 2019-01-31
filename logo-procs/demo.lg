@@ -4,6 +4,7 @@ load "shapes.lg
 load "spirograph.lg
 load "shapeograph.lg
 load "translate.lg
+load "patterns.lg
 
 ; Demos
 
@@ -50,6 +51,10 @@ pu
 home pd
 end
 
-to demo.hallows
-compose.shapes [xlated circle] [[equalateral [110] [-55 -30] 30] [30]]
-end 
+to nested.hallows [:n 20]
+repeat 5 [ifelse (modulo # 2) = 1 [deathly.hallows :n * (power 2 #)] [flipped.hallows :n * (power 2 #)]]
+end
+
+to pattern1 [:side 200]
+shapeograph "flipped.hallows (list :side) 15 50
+end
