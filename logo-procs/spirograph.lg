@@ -1,0 +1,6 @@
+
+to spirograph :circlerad :centerrad :degrees
+make "dist sum :circlerad :centerrad
+make "reps quotient 360 :degrees
+repeat :reps [pu forward :dist pd arc 360 :circlerad pu back :dist right :degrees]
+end

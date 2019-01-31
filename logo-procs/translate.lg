@@ -1,0 +1,25 @@
+
+to xlated :shapecmd :shapeargs :posoff :angleoff
+; Translate starting position, start angle for making a shape.
+(local "origpos "ispendown "xposoff "yposoff)
+localmake "origpos pos
+localmake "ispendown pendown?
+localmake "xposoff first :posoff
+localmake "yposoff last :posoff
+localmake "x (sum xcor (sin turtleangle) * :xposoff (cos turtleangle) * :yposoff)
+localmake "y (sum ycor -1 * (cos turtleangle) * :xposoff (sin turtleangle) * :yposoff)
+pu
+setpos list :x :y
+right :angleoff
+pd
+apply :shapecmd :shapeargs
+pu
+left :angleoff
+setpos :origpos
+if :ispendown [pd]
+end
+
+to turtleangle
+output -heading + 90
+end
+

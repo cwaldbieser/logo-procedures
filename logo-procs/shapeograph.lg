@@ -1,0 +1,6 @@
+
+to shapeograph :shapecmd :shapeargs :degrees :innerradius
+make "reps quotient 360 :degrees
+repeat :reps [pu forward :innerradius pd apply :shapecmd :shapeargs pu back :innerradius right :degrees]
+end
+

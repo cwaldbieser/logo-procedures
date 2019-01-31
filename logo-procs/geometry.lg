@@ -1,0 +1,24 @@
+
+to lineardist :pos1 :pos0
+; Compute linear distance between 2 coordinates.
+make "x1 first :pos1
+make "y1 last :pos1
+make "x0 first :pos0
+make "y0 last :pos0
+make "xdist :x1 - :x0
+make "ydist :y1 - :y0
+make "dist sqrt (:xdist * :xdist + :ydist * :ydist)
+output :dist
+end
+
+to midpoint :pos1 :pos0
+; Compute midpoint between 2 coordinates.
+make "x1 first :pos1
+make "y1 last :pos1
+make "x0 first :pos0
+make "y0 last :pos0
+make "x2 (:x1 - :x0) / 2
+make "y2 (:y1 - :y0) / 2
+output (list :x2 :y2)
+end
+

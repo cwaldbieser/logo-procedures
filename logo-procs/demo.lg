@@ -1,0 +1,55 @@
+
+; Dependencies
+load "shapes.lg
+load "spirograph.lg
+load "shapeograph.lg
+load "translate.lg
+
+; Demos
+
+to demo.rotate
+cs
+ppt
+pd
+setpencolor 2
+repeat 18 [repeat 20 [rt 1 spirograph 50 40 20 wait 1 clean]]
+end
+
+to demo1
+cs
+shapeograph "xlated [ equalateral [60] [-30 0] 30 ] 10 100
+end
+
+to demo2
+cs
+shapeograph "circle [90] 10 100
+end
+
+to demo3 [:side 80] [:pencolors [4 2 1]] [:innerradius 10] [:angle 10]
+cs
+pu
+forward 40
+pd
+;(foreach :pencolors [setpencolor ? shapeograph "xlated [rectangle [80 80] [-40 0] 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
+(foreach :pencolors [setpencolor ? shapeograph "xlated (list "rectangle (list :side :side) (list -(:side / 2) 0) 0) :angle ((:innerradius + ((# - 1) * :side)) + 10)])
+end
+
+to demo4
+(demo3 80 [1 2 3 5])
+end
+
+to demo5
+cs
+repeat 18 [pu home left 10 * # (ellipse pos 150) wait 10]
+end
+
+to demo6 [:radius 150] [:wait 7] [:colors [1 2 3 5]]
+cs
+repeat 18 [pu home left 10 * # setpencolor pick :colors (ellipse pos :radius) wait 7]
+pu
+home pd
+end
+
+to demo.hallows
+compose.shapes [xlated circle] [[equalateral [110] [-55 -30] 30] [30]]
+end 

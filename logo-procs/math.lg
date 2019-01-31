@@ -1,0 +1,9 @@
+
+to abs :x
+    output sqrt (:x * :x)
+end
+
+to arccos :x
+output arctan ((sqrt ((1-x)*(1-x)))/x)
+end
+
