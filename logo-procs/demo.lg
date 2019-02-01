@@ -18,12 +18,12 @@ end
 
 to demo1
 cs
-shapeograph "xlated [ equalateral [60] [-30 0] 30 ] 10 100
+shapeograph [xlated [equalateral 60] [-30 0] 30 ] 10 100
 end
 
 to demo2
 cs
-shapeograph "circle [90] 10 100
+shapeograph [circle 90] 10 100
 end
 
 to demo3 [:side 80] [:pencolors [4 2 1]] [:innerradius 10] [:angle 10]
@@ -31,8 +31,9 @@ cs
 pu
 forward 40
 pd
-;(foreach :pencolors [setpencolor ? shapeograph "xlated [rectangle [80 80] [-40 0] 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
-(foreach :pencolors [setpencolor ? shapeograph "xlated (list "rectangle (list :side :side) (list -(:side / 2) 0) 0) :angle ((:innerradius + ((# - 1) * :side)) + 10)])
+;(foreach :pencolors [setpencolor ? shapeograph [xlated [rectangle [80 80]] [-40 0] 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
+(foreach :pencolors [setpencolor ? shapeograph [xlated [rectangle :side :side] (list (-0.5 * :side)  0) 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
+;(foreach :pencolors [setpencolor ? shapeograph [xlated [rectangle :side :side] [-30 0] 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
 end
 
 to demo4
@@ -55,6 +56,19 @@ to nested.hallows [:n 20]
 repeat 5 [ifelse (modulo # 2) = 1 [deathly.hallows :n * (power 2 #)] [flipped.hallows :n * (power 2 #)]]
 end
 
-to pattern1 [:side 200]
-shapeograph "flipped.hallows (list :side) 15 50
+to pattern.flipped.hallows [:side 200]
+shapeograph [flipped.hallows :side] 15 50
 end
+
+to pattern.mystery.hallows [:side 200] [:inner.radius 90]
+shapeograph [mystery.hallows :side] 15 :inner.radius
+end
+
+to demo.golden.turtle
+repeat 1800 [forward 20 right repcount + .1]
+end
+
+to pattern.colorsquare
+shapeograph [colorsquare 17 * repcount] 15 0
+end
+

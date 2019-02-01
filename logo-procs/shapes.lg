@@ -41,9 +41,26 @@ to rotate.coords :x :y :theta
     output (list :x0 :y0)
 end
 
-to compose.shapes :shapecmds :shapeargs
-(foreach :shapecmds :shapeargs [
-    (apply ?1 ?2)
+to colorsquare :side [:colors [1 2 3 5]]
+localmake "half.side 0.5 * :side
+localmake "ispendown pendownp
+localmake "start.pos pos
+localmake "start.heading heading
+if :ispendown [pu]
+back :half.side
+left 90
+forward :half.side
+if :ispendown [pd]
+foreach :colors [right 90 setpencolor ? forward :side]
+if :ispendown [pu]
+setpos :start.pos
+setheading :start.heading
+if :ispendown [pd]
+end
+
+to compose.shapes :shapes
+(foreach :shapes [
+    run ?
 ])
 end
 
