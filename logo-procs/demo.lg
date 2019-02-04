@@ -72,3 +72,6 @@ to pattern.colorsquare
 shapeograph [colorsquare 17 * repcount] 15 0
 end
 
+to pattern.colorhex [:size 100] [:colors [1 2 3 4 5 6]]
+shapeograph [(colorhex :size :colors)] 15 20
+end

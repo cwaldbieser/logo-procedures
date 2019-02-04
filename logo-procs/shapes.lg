@@ -58,9 +58,23 @@ setheading :start.heading
 if :ispendown [pd]
 end
 
+to colorhex :side [:colors [1 2 3 4 5 6]]
+repeat 6 [setpencolor item # :colors forward :side right 60]
+end
+
 to compose.shapes :shapes
 (foreach :shapes [
     run ?
 ])
+end
+
+to star6 :side
+localmake "half.side side / 2
+localmake "height sqrt (:side * :side + :half.side * half.side)
+localmake "quarter.height :height / 4
+repeat 2 [
+xlated [equalateral :side] (list :side / -2 -:quarter.height) 30
+right 180
+]
 end
 

@@ -1,13 +1,23 @@
 
 to shapeograph :shape :degrees :innerradius
-make "reps quotient 360 :degrees
-repeat :reps [pu forward :innerradius pd protect.pos.heading :shape pu back :innerradius right :degrees]
+localmake "reps quotient 360 :degrees
+localmake "ispendown pendownp
+repeat :reps [
+    if [ :ispendown ] [ pu ]
+    forward :innerradius 
+    if [ :ispendown ] [ pd ]
+    protect.pos.heading :shape 
+    if [ :ispendown ] [ pu ]
+    back :innerradius 
+    right :degrees
+]
+if [ :ispendown ] [ pd ]
 end
 
 to protect.pos.heading :cmd
 localmake "start.pos pos
 localmake "start.heading heading
 run :cmd
-setpos :start.pos
+if [ :start.pos <> pos ] [ setpos :start.pos ]
 setheading :start.heading
 end
