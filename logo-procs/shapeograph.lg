@@ -1,5 +1,5 @@
 
-to shapeograph :shape :degrees :innerradius
+to shapeograph :shape :degrees :innerradius [:delay 0]
 localmake "reps quotient 360 :degrees
 localmake "ispendown pendownp
 repeat :reps [
@@ -10,6 +10,7 @@ repeat :reps [
     if [ :ispendown ] [ pu ]
     back :innerradius 
     right :degrees
+    wait :delay
 ]
 if [ :ispendown ] [ pd ]
 end

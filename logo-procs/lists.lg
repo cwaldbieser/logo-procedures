@@ -1,0 +1,4 @@
+
+to slice :lst :start :stop
+output map [item ? :lst] iseq :start (:stop - 1)
+end

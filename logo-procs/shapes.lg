@@ -12,8 +12,17 @@ to square :side
 rectangle :side :side
 end
 
-to equalateral :side
-repeat 3 [forward :side right 120]
+to equalateral :side [:colors []]
+localmake "start.pencolor pencolor
+if [ emptyp :colors ] [
+    localmake "color pencolor
+    localmake "colors (list :color :color :color)
+]
+repeat 3 [
+    setpencolor item # :colors 
+    forward :side right 120
+]
+setpencolor :start.pencolor
 end
 
 to ellipse :center :r [:squash.x 1] [:squash.y 0.5] [:step 15]
@@ -68,13 +77,19 @@ to compose.shapes :shapes
 ])
 end
 
-to star6 :side
-localmake "half.side side / 2
-localmake "height sqrt (:side * :side + :half.side * half.side)
+to star6 :side [:colors []]
+print "START
+localmake "half.side :side / 2
+print [CHECKPOINT 1]
+localmake "height sqrt :side * :side + :half.side * :half.side
+localmake "height sqrt :side * :side + :half.side * :half.side
 localmake "quarter.height :height / 4
+if emptyp :colors [
+    localmake "colors cascade 6 [ fput pencolor ? ] []
+]
+localmake "color.list (list slice :colors 1 4 slice :colors 4 7)
 repeat 2 [
-xlated [equalateral :side] (list :side / -2 -:quarter.height) 30
+xlated [(equalateral :side item # :color.list)] (list :side / -2 -:quarter.height) 30
 right 180
 ]
 end
-
