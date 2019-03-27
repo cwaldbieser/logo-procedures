@@ -11,7 +11,6 @@ load "patterns.lg
 
 to demo.rotate
 cs
-ppt
 pd
 setpencolor 2
 repeat 18 [repeat 20 [rt 1 spirograph 50 40 20 wait 1 clean]]
@@ -32,9 +31,7 @@ cs
 pu
 forward 40
 pd
-;(foreach :pencolors [setpencolor ? shapeograph [xlated [rectangle [80 80]] [-40 0] 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
 (foreach :pencolors [setpencolor ? shapeograph [xlated [rectangle :side :side] (list (-0.5 * :side)  0) 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
-;(foreach :pencolors [setpencolor ? shapeograph [xlated [rectangle :side :side] [-30 0] 0] :angle ((:innerradius + ((# - 1) * :side)) + 10)])
 end
 
 to demo4

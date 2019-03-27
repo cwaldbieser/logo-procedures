@@ -20,6 +20,7 @@ if :ispendown [pd]
 end
 
 to turtleangle
-output -heading + 90
+;output -heading + 90
+output cartesian.heading heading
 end
 

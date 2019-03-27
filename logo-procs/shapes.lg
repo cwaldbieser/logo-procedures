@@ -12,6 +12,11 @@ to square :side
 rectangle :side :side
 end
 
+to rhombus :side :angle
+localmake "opposite.angle 180 - :angle 
+repeat 2 [rt :angle fd :side rt :opposite.angle fd :side]
+end
+
 to equalateral :side [:colors []]
 localmake "start.pencolor pencolor
 if [ emptyp :colors ] [
@@ -23,6 +28,24 @@ repeat 3 [
     forward :side right 120
 ]
 setpencolor :start.pencolor
+end
+
+to isosceles :side :angle
+localmake "first.angle 180 - :angle
+localmake "second.angle difference 180 (quotient (180 - :angle) 2)
+localmake "half.angle (:angle / 2)
+localmake "base product 2 (product :side (sin :half.angle))
+fd :side
+rt :first.angle
+fd :side
+rt :second.angle
+fd :base
+rt :second.angle
+end
+
+to centered.iso :side :angle
+; Isosceles triangle, base centered on turtle.
+xlated [isosceles :side :angle] (list :side * -1 * sin quotient :angle 2 0) quotient :angle 2
 end
 
 to ellipse :center :r [:squash.x 1] [:squash.y 0.5] [:step 15]
@@ -78,9 +101,7 @@ to compose.shapes :shapes
 end
 
 to star6 :side [:colors []]
-print "START
 localmake "half.side :side / 2
-print [CHECKPOINT 1]
 localmake "height sqrt :side * :side + :half.side * :half.side
 localmake "height sqrt :side * :side + :half.side * :half.side
 localmake "quarter.height :height / 4

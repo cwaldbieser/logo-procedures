@@ -1,0 +1,40 @@
+
+
+; Reutersvärd optical illusion
+
+TO tile
+LEFT 60
+REPEAT 2 [
+    FORWARD 40 RIGHT 120 FORWARD 40 RIGHT 60
+] RIGHT 60
+END
+
+TO cube [:sides [true true true]]
+LOCALMAKE "colors [gold teal red]
+REPEAT 3 [ 
+    if item # :sides [
+        SETPENCOLOR ITEM REPCOUNT :colors
+        FILLED ITEM REPCOUNT :colors [tile]
+    ]
+    RIGHT 120
+]
+END
+
+to block.triangle 
+HIDETURTLE SETPENSIZE 1 RIGHT 30
+localmake "first "true
+REPEAT 3 [
+    REPEAT 3 [
+        PENUP FORWARD 60 PENDOWN
+        LOCALMAKE "d HEADING
+        SETHEADING CARTESIAN.HEADING 60
+        ifelse :first [(cube [true false false]) localmake "first "false] [cube]
+        SETHEADING :d
+    ]
+    RIGHT 120
+]
+end
+
+to illusion
+cs block.triangle pu home rt 30 fd 60 pd setheading cartesian.heading 60 (cube [false true true])
+end

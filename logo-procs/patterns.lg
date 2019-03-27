@@ -30,3 +30,11 @@ compose.shapes [
     [right 180]
 ]
 end
+
+to iso.phoenix :side
+cs pu back :side pd filled "blue [ repeat 36 [ isosceles :side (sum 10 (# * 10)) ] ]
+end
+
+to circular.saw [:side 300]
+cs filled [0 255 0] [ shapeograph [isosceles :side 20] 15 20 ]
+end
